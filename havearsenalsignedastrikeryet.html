@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Have Arsenal Signed a Striker Yet?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --arsenal-red: #e60000;
+      --arsenal-white: #ffffff;
+      --arsenal-grey: #ddd;
+      --dark-background: #1a1a1a;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--arsenal-red);
+      color: var(--arsenal-white);
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 4vh 2vw;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    #question {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+
+    h1 {
+      font-size: clamp(8rem, 20vw, 16rem);
+      color: var(--arsenal-white);
+      margin: 0;
+      line-height: 1;
+    }
+
+    #subline {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      margin-top: 0.1rem;
+      color: var(--arsenal-grey);
+    }
+
+    #subline .emph {
+      text-decoration: underline;
+      color: var(--arsenal-white);
+    }
+
+    #kepa {
+      display: block;
+      margin-top: 0.3rem;
+      color: var(--arsenal-white);
+      cursor: help;
+    }
+
+    #countdown {
+      font-size: clamp(1rem, 3vw, 2rem);
+      margin-top: 2.5rem;
+      color: var(--arsenal-white);
+    }
+
+    #refresh {
+      margin-top: 2rem;
+    }
+
+    button {
+      background-color: var(--dark-background);
+      color: var(--arsenal-white);
+      border: none;
+      padding: 0.8rem 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    #ads {
+      margin-top: 2rem;
+      width: 100%;
+      padding: 1rem;
+      background-color: #fff;
+      color: #000;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="question">Have Arsenal signed a striker yet?</div>
+  <h1>NO</h1>
+
+  <div id="subline">
+    Key priorities Arsenal <span class="emph">HAVE</span> signed this window:
+    <span id="kepa" title="NOT a striker">Kepa</span>
+  </div>
+
+  <div id="countdown">Loading countdown...</div>
+
+  <div id="refresh">
+    <button onclick="window.location.reload()">Refresh Frustration</button>
+  </div>
+
+  <div id="ads">
+    (Ads might appear here)
+  </div>
+
+  <script>
+    // Countdown to 1 September 2025, 19:00 BST (which is 18:00 UTC)
+    const targetDate = new Date('2025-09-01T18:00:00Z');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = 'The deadline has passed!';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('countdown').textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s remaining`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
